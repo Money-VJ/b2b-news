@@ -1,94 +1,111 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // Главные карточки (2 верхние большие)
+  const mainCards = [
+    {
+      id: 1,
+      imageSrc: "/images/Inter-0.png",
+      buttonText: "Подробнее",
+    },
+    {
+      id: 2,
+      imageSrc: "/images/Group2.png",
+      buttonText: "Читать обзор",
+    },
+    {
+      id: 3,
+      imageSrc: "/images/Group3.png",
+      buttonText: "Читать обзор",
+    },
+  ];
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  // Нижние карточки (4 карточки)
+  const bottomCards = [
+    { id: 3, imageSrc: "/images/2.png", title: "." },
+    { id: 4, imageSrc: "/images/2.png", title: "." },
+    { id: 5, imageSrc: "/images/2.png", title: "." },
+    { id: 6, imageSrc: "/images/2.png", title: "." },
+  ];
+
+  return (
+    <div className="bg-black text-white min-h-screen font-sans">
+      {/* Header */}
+      <header className="fixed top-0 left-0 w-full bg-purple-700 z-50 shadow-lg">
+        <div className="max-w-6xl mx-auto p-4 flex justify-between items-center">
+          <div className="text-lg font-bold">
+            <img src="/images/хедер.png" alt="Logo" className="h-10" />
+          </div>
+          <div className="flex space-x-6">
+            <a href="#home" className="hover:text-gray-400">.</a>
+            <a href="#faq" className="hover:text-gray-400">.</a>
+            <a href="#login" className="hover:text-gray-400">.</a>
+          </div>
         </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="pt-24">
+        {/* Главные карточки */}
+        <section className="grid gap-6 lg:grid-cols-2 sm:grid-cols-1 p-6">
+          {mainCards.map((card) => (
+            <article key={card.id} className="bg-gray-800 p-4 rounded-md">
+              <img
+                src={card.imageSrc}
+                alt="Card Image"
+                className="rounded-md object-cover h-48 w-full"
+              />
+              <button className="mt-4 bg-orange-500 text-black py-2 px-4 rounded-md">
+                {card.buttonText}
+              </button>
+            </article>
+          ))}
+        </section>
+
+        {/* Нижние карточки */}
+        <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 p-6">
+          {bottomCards.map((card) => (
+            <div key={card.id} className="bg-gray-800 p-4 rounded-md">
+              <img
+                src={card.imageSrc}
+                alt={card.title}
+                className="rounded-md object-cover h-32 w-full"
+              />
+              <h3 className="text-md font-bold mt-2">{card.title}</h3>
+            </div>
+          ))}
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="p-6 mt-12 bg-gray-900 text-center text-sm">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+          <div className="flex flex-col items-center md:items-start">
+            <img
+              src="/images/футтер.png"
+              alt="Footer Logo"
+              className="w-24 h-24 object-cover rounded-md mb-4"
+            />
+            <p className="text-gray-400">.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h4 className="text-lg font-bold mb-2">.</h4>
+            <ul className="space-y-2">
+              <li><a href="#about" className="hover:text-gray-400">.</a></li>
+              <li><a href="#services" className="hover:text-gray-400">.</a></li>
+              <li><a href="#contact" className="hover:text-gray-400">.</a></li>
+            </ul>
+          </div>
+          <div className="flex flex-col items-center md:items-end">
+            <h4 className="text-lg font-bold mb-2">.</h4>
+            <div className="flex space-x-4">
+              <a href="https://facebook.com" className="hover:text-gray-400">Facebook</a>
+              <a href="https://instagram.com" className="hover:text-gray-400">.</a>
+              <a href="https://twitter.com" className="hover:text-gray-400">.</a>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
